@@ -1,0 +1,279 @@
+WARNING 06-16 00:44:41 _custom_ops.py:11] Failed to import from vllm._C with ImportError('/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/_C.abi3.so: undefined symbol: cuTensorMapEncodeTiled')
+INFO 06-16 00:44:48 api_server.py:177] vLLM API server version 0.5.0
+INFO 06-16 00:44:48 api_server.py:178] args: Namespace(host=None, port=8000, uvicorn_log_level='info', allow_credentials=False, allowed_origins=['*'], allowed_methods=['*'], allowed_headers=['*'], api_key=None, lora_modules=None, chat_template=None, response_role='assistant', ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, ssl_cert_reqs=0, root_path=None, middleware=[], model='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', tokenizer=None, skip_tokenizer_init=False, revision=None, code_revision=None, tokenizer_revision=None, tokenizer_mode='auto', trust_remote_code=False, download_dir=None, load_format='auto', dtype='auto', kv_cache_dtype='auto', quantization_param_path=None, max_model_len=None, guided_decoding_backend='outlines', distributed_executor_backend=None, worker_use_ray=False, pipeline_parallel_size=1, tensor_parallel_size=1, max_parallel_loading_workers=None, ray_workers_use_nsight=False, block_size=16, enable_prefix_caching=False, disable_sliding_window=False, use_v2_block_manager=False, num_lookahead_slots=0, seed=0, swap_space=4, gpu_memory_utilization=0.9, num_gpu_blocks_override=None, max_num_batched_tokens=None, max_num_seqs=256, max_logprobs=20, disable_log_stats=False, quantization=None, rope_scaling=None, rope_theta=None, enforce_eager=False, max_context_len_to_capture=None, max_seq_len_to_capture=8192, disable_custom_all_reduce=False, tokenizer_pool_size=0, tokenizer_pool_type='ray', tokenizer_pool_extra_config=None, enable_lora=False, max_loras=1, max_lora_rank=16, lora_extra_vocab_size=256, lora_dtype='auto', long_lora_scaling_factors=None, max_cpu_loras=None, fully_sharded_loras=False, device='auto', image_input_type=None, image_token_id=None, image_input_shape=None, image_feature_size=None, image_processor=None, image_processor_revision=None, disable_image_processor=False, scheduler_delay_factor=0.0, enable_chunked_prefill=False, speculative_model=None, num_speculative_tokens=None, speculative_max_model_len=None, speculative_disable_by_batch_size=None, ngram_prompt_lookup_max=None, ngram_prompt_lookup_min=None, model_loader_extra_config=None, preemption_mode=None, served_model_name=['Qwen2-7B-Instruct'], qlora_adapter_name_or_path=None, engine_use_ray=False, disable_log_requests=False, max_log_len=None)
+INFO 06-16 00:44:48 llm_engine.py:161] Initializing an LLM engine (v0.5.0) with config: model='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', speculative_config=None, tokenizer='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), seed=0, served_model_name=Qwen2-7B-Instruct)
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Traceback (most recent call last):
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 196, in <module>
+    engine = AsyncLLMEngine.from_engine_args(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 395, in from_engine_args
+    engine = cls(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 349, in __init__
+    self.engine = self._init_engine(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 470, in _init_engine
+    return engine_class(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/llm_engine.py", line 223, in __init__
+    self.model_executor = executor_class(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/executor_base.py", line 41, in __init__
+    self._init_executor()
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/gpu_executor.py", line 22, in _init_executor
+    self.driver_worker = self._create_worker()
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/gpu_executor.py", line 67, in _create_worker
+    wrapper.init_worker(**self._get_worker_kwargs(local_rank, rank,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/worker_base.py", line 134, in init_worker
+    self.worker = worker_class(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/worker.py", line 74, in __init__
+    self.model_runner = ModelRunnerClass(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/model_runner.py", line 118, in __init__
+    self.attn_backend = get_attn_backend(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/attention/selector.py", line 42, in get_attn_backend
+    backend = which_attn_to_use(num_heads, head_size, num_kv_heads,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/attention/selector.py", line 117, in which_attn_to_use
+    if torch.cuda.get_device_capability()[0] < 8:
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 430, in get_device_capability
+    prop = get_device_properties(device)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 444, in get_device_properties
+    _lazy_init()  # will define _get_device_properties
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 293, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: The NVIDIA driver on your system is too old (found version 11020). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver.
+WARNING 06-16 21:04:03 _custom_ops.py:11] Failed to import from vllm._C with ImportError('/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/_C.abi3.so: undefined symbol: cuTensorMapEncodeTiled')
+INFO 06-16 21:04:55 api_server.py:177] vLLM API server version 0.5.0
+INFO 06-16 21:04:55 api_server.py:178] args: Namespace(host=None, port=8000, uvicorn_log_level='info', allow_credentials=False, allowed_origins=['*'], allowed_methods=['*'], allowed_headers=['*'], api_key=None, lora_modules=None, chat_template=None, response_role='assistant', ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, ssl_cert_reqs=0, root_path=None, middleware=[], model='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', tokenizer=None, skip_tokenizer_init=False, revision=None, code_revision=None, tokenizer_revision=None, tokenizer_mode='auto', trust_remote_code=False, download_dir=None, load_format='auto', dtype='half', kv_cache_dtype='auto', quantization_param_path=None, max_model_len=None, guided_decoding_backend='outlines', distributed_executor_backend=None, worker_use_ray=False, pipeline_parallel_size=1, tensor_parallel_size=1, max_parallel_loading_workers=None, ray_workers_use_nsight=False, block_size=16, enable_prefix_caching=False, disable_sliding_window=False, use_v2_block_manager=False, num_lookahead_slots=0, seed=0, swap_space=4, gpu_memory_utilization=0.9, num_gpu_blocks_override=None, max_num_batched_tokens=None, max_num_seqs=256, max_logprobs=20, disable_log_stats=False, quantization=None, rope_scaling=None, rope_theta=None, enforce_eager=False, max_context_len_to_capture=None, max_seq_len_to_capture=8192, disable_custom_all_reduce=False, tokenizer_pool_size=0, tokenizer_pool_type='ray', tokenizer_pool_extra_config=None, enable_lora=False, max_loras=1, max_lora_rank=16, lora_extra_vocab_size=256, lora_dtype='auto', long_lora_scaling_factors=None, max_cpu_loras=None, fully_sharded_loras=False, device='auto', image_input_type=None, image_token_id=None, image_input_shape=None, image_feature_size=None, image_processor=None, image_processor_revision=None, disable_image_processor=False, scheduler_delay_factor=0.0, enable_chunked_prefill=False, speculative_model=None, num_speculative_tokens=None, speculative_max_model_len=None, speculative_disable_by_batch_size=None, ngram_prompt_lookup_max=None, ngram_prompt_lookup_min=None, model_loader_extra_config=None, preemption_mode=None, served_model_name=['Qwen2-7B-Instruct'], qlora_adapter_name_or_path=None, engine_use_ray=False, disable_log_requests=False, max_log_len=None)
+WARNING 06-16 21:04:55 config.py:1218] Casting torch.bfloat16 to torch.float16.
+INFO 06-16 21:04:55 llm_engine.py:161] Initializing an LLM engine (v0.5.0) with config: model='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', speculative_config=None, tokenizer='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=32768, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), seed=0, served_model_name=Qwen2-7B-Instruct)
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Traceback (most recent call last):
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 196, in <module>
+    engine = AsyncLLMEngine.from_engine_args(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 395, in from_engine_args
+    engine = cls(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 349, in __init__
+    self.engine = self._init_engine(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 470, in _init_engine
+    return engine_class(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/llm_engine.py", line 223, in __init__
+    self.model_executor = executor_class(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/executor_base.py", line 41, in __init__
+    self._init_executor()
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/gpu_executor.py", line 22, in _init_executor
+    self.driver_worker = self._create_worker()
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/gpu_executor.py", line 67, in _create_worker
+    wrapper.init_worker(**self._get_worker_kwargs(local_rank, rank,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/worker_base.py", line 134, in init_worker
+    self.worker = worker_class(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/worker.py", line 74, in __init__
+    self.model_runner = ModelRunnerClass(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/model_runner.py", line 118, in __init__
+    self.attn_backend = get_attn_backend(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/attention/selector.py", line 42, in get_attn_backend
+    backend = which_attn_to_use(num_heads, head_size, num_kv_heads,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/attention/selector.py", line 117, in which_attn_to_use
+    if torch.cuda.get_device_capability()[0] < 8:
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 430, in get_device_capability
+    prop = get_device_properties(device)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 444, in get_device_properties
+    _lazy_init()  # will define _get_device_properties
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 293, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: The NVIDIA driver on your system is too old (found version 11020). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver.
+WARNING 06-16 21:22:07 _custom_ops.py:11] Failed to import from vllm._C with ImportError('/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/_C.abi3.so: undefined symbol: cuTensorMapEncodeTiled')
+INFO 06-16 21:22:44 api_server.py:177] vLLM API server version 0.5.0
+INFO 06-16 21:22:44 api_server.py:178] args: Namespace(host=None, port=8000, uvicorn_log_level='info', allow_credentials=False, allowed_origins=['*'], allowed_methods=['*'], allowed_headers=['*'], api_key=None, lora_modules=None, chat_template=None, response_role='assistant', ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, ssl_cert_reqs=0, root_path=None, middleware=[], model='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', tokenizer=None, skip_tokenizer_init=False, revision=None, code_revision=None, tokenizer_revision=None, tokenizer_mode='auto', trust_remote_code=False, download_dir=None, load_format='auto', dtype='half', kv_cache_dtype='auto', quantization_param_path=None, max_model_len=None, guided_decoding_backend='outlines', distributed_executor_backend=None, worker_use_ray=False, pipeline_parallel_size=1, tensor_parallel_size=1, max_parallel_loading_workers=None, ray_workers_use_nsight=False, block_size=16, enable_prefix_caching=False, disable_sliding_window=False, use_v2_block_manager=False, num_lookahead_slots=0, seed=0, swap_space=4, gpu_memory_utilization=0.9, num_gpu_blocks_override=None, max_num_batched_tokens=None, max_num_seqs=256, max_logprobs=20, disable_log_stats=False, quantization=None, rope_scaling=None, rope_theta=None, enforce_eager=False, max_context_len_to_capture=None, max_seq_len_to_capture=8192, disable_custom_all_reduce=False, tokenizer_pool_size=0, tokenizer_pool_type='ray', tokenizer_pool_extra_config=None, enable_lora=False, max_loras=1, max_lora_rank=16, lora_extra_vocab_size=256, lora_dtype='auto', long_lora_scaling_factors=None, max_cpu_loras=None, fully_sharded_loras=False, device='auto', image_input_type=None, image_token_id=None, image_input_shape=None, image_feature_size=None, image_processor=None, image_processor_revision=None, disable_image_processor=False, scheduler_delay_factor=0.0, enable_chunked_prefill=False, speculative_model=None, num_speculative_tokens=None, speculative_max_model_len=None, speculative_disable_by_batch_size=None, ngram_prompt_lookup_max=None, ngram_prompt_lookup_min=None, model_loader_extra_config=None, preemption_mode=None, served_model_name=['Qwen2-7B-Instruct'], qlora_adapter_name_or_path=None, engine_use_ray=False, disable_log_requests=False, max_log_len=None)
+WARNING 06-16 21:22:44 config.py:1218] Casting torch.bfloat16 to torch.float16.
+INFO 06-16 21:22:44 llm_engine.py:161] Initializing an LLM engine (v0.5.0) with config: model='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', speculative_config=None, tokenizer='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=32768, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), seed=0, served_model_name=Qwen2-7B-Instruct)
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Traceback (most recent call last):
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 196, in <module>
+    engine = AsyncLLMEngine.from_engine_args(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 395, in from_engine_args
+    engine = cls(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 349, in __init__
+    self.engine = self._init_engine(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 470, in _init_engine
+    return engine_class(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/llm_engine.py", line 223, in __init__
+    self.model_executor = executor_class(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/executor_base.py", line 41, in __init__
+    self._init_executor()
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/gpu_executor.py", line 22, in _init_executor
+    self.driver_worker = self._create_worker()
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/gpu_executor.py", line 67, in _create_worker
+    wrapper.init_worker(**self._get_worker_kwargs(local_rank, rank,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/worker_base.py", line 134, in init_worker
+    self.worker = worker_class(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/worker.py", line 74, in __init__
+    self.model_runner = ModelRunnerClass(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/model_runner.py", line 118, in __init__
+    self.attn_backend = get_attn_backend(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/attention/selector.py", line 42, in get_attn_backend
+    backend = which_attn_to_use(num_heads, head_size, num_kv_heads,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/attention/selector.py", line 117, in which_attn_to_use
+    if torch.cuda.get_device_capability()[0] < 8:
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 430, in get_device_capability
+    prop = get_device_properties(device)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 444, in get_device_properties
+    _lazy_init()  # will define _get_device_properties
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 293, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: The NVIDIA driver on your system is too old (found version 11020). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver.
+WARNING 06-17 22:06:07 _custom_ops.py:11] Failed to import from vllm._C with ImportError('/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/_C.abi3.so: undefined symbol: _ZN3c104impl3cow11cow_deleterEPv')
+INFO 06-17 22:06:40 api_server.py:177] vLLM API server version 0.5.0
+INFO 06-17 22:06:40 api_server.py:178] args: Namespace(host=None, port=8000, uvicorn_log_level='info', allow_credentials=False, allowed_origins=['*'], allowed_methods=['*'], allowed_headers=['*'], api_key=None, lora_modules=None, chat_template=None, response_role='assistant', ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, ssl_cert_reqs=0, root_path=None, middleware=[], model='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', tokenizer=None, skip_tokenizer_init=False, revision=None, code_revision=None, tokenizer_revision=None, tokenizer_mode='auto', trust_remote_code=False, download_dir=None, load_format='auto', dtype='half', kv_cache_dtype='auto', quantization_param_path=None, max_model_len=None, guided_decoding_backend='outlines', distributed_executor_backend=None, worker_use_ray=False, pipeline_parallel_size=1, tensor_parallel_size=1, max_parallel_loading_workers=None, ray_workers_use_nsight=False, block_size=16, enable_prefix_caching=False, disable_sliding_window=False, use_v2_block_manager=False, num_lookahead_slots=0, seed=0, swap_space=4, gpu_memory_utilization=0.9, num_gpu_blocks_override=None, max_num_batched_tokens=None, max_num_seqs=256, max_logprobs=20, disable_log_stats=False, quantization=None, rope_scaling=None, rope_theta=None, enforce_eager=False, max_context_len_to_capture=None, max_seq_len_to_capture=8192, disable_custom_all_reduce=False, tokenizer_pool_size=0, tokenizer_pool_type='ray', tokenizer_pool_extra_config=None, enable_lora=False, max_loras=1, max_lora_rank=16, lora_extra_vocab_size=256, lora_dtype='auto', long_lora_scaling_factors=None, max_cpu_loras=None, fully_sharded_loras=False, device='auto', image_input_type=None, image_token_id=None, image_input_shape=None, image_feature_size=None, image_processor=None, image_processor_revision=None, disable_image_processor=False, scheduler_delay_factor=0.0, enable_chunked_prefill=False, speculative_model=None, num_speculative_tokens=None, speculative_max_model_len=None, speculative_disable_by_batch_size=None, ngram_prompt_lookup_max=None, ngram_prompt_lookup_min=None, model_loader_extra_config=None, preemption_mode=None, served_model_name=['Qwen2-7B-Instruct'], qlora_adapter_name_or_path=None, engine_use_ray=False, disable_log_requests=False, max_log_len=None)
+WARNING 06-17 22:06:40 config.py:1218] Casting torch.bfloat16 to torch.float16.
+INFO 06-17 22:06:40 llm_engine.py:161] Initializing an LLM engine (v0.5.0) with config: model='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', speculative_config=None, tokenizer='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=32768, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), seed=0, served_model_name=Qwen2-7B-Instruct)
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Traceback (most recent call last):
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 196, in <module>
+    engine = AsyncLLMEngine.from_engine_args(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 395, in from_engine_args
+    engine = cls(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 349, in __init__
+    self.engine = self._init_engine(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/async_llm_engine.py", line 470, in _init_engine
+    return engine_class(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/llm_engine.py", line 223, in __init__
+    self.model_executor = executor_class(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/executor_base.py", line 41, in __init__
+    self._init_executor()
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/gpu_executor.py", line 22, in _init_executor
+    self.driver_worker = self._create_worker()
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/executor/gpu_executor.py", line 67, in _create_worker
+    wrapper.init_worker(**self._get_worker_kwargs(local_rank, rank,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/worker_base.py", line 134, in init_worker
+    self.worker = worker_class(*args, **kwargs)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/worker.py", line 74, in __init__
+    self.model_runner = ModelRunnerClass(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/worker/model_runner.py", line 118, in __init__
+    self.attn_backend = get_attn_backend(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/attention/selector.py", line 42, in get_attn_backend
+    backend = which_attn_to_use(num_heads, head_size, num_kv_heads,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/attention/selector.py", line 117, in which_attn_to_use
+    if torch.cuda.get_device_capability()[0] < 8:
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 435, in get_device_capability
+    prop = get_device_properties(device)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 449, in get_device_properties
+    _lazy_init()  # will define _get_device_properties
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/torch/cuda/__init__.py", line 298, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: The NVIDIA driver on your system is too old (found version 11020). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver.
+Traceback (most recent call last):
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/runpy.py", line 187, in _run_module_as_main
+    mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/runpy.py", line 110, in _get_module_details
+    __import__(pkg_name)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/__init__.py", line 3, in <module>
+    from vllm.engine.arg_utils import AsyncEngineArgs, EngineArgs
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 8, in <module>
+    from vllm.config import (CacheConfig, DecodingConfig, DeviceConfig,
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/config.py", line 11, in <module>
+    from vllm.model_executor.layers.quantization import QUANTIZATION_METHODS
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/model_executor/__init__.py", line 1, in <module>
+    from vllm.model_executor.sampling_metadata import SamplingMetadata
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/model_executor/sampling_metadata.py", line 7, in <module>
+    from vllm.model_executor.layers.ops.sample import get_num_triton_sampler_splits
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/model_executor/layers/ops/sample.py", line 8, in <module>
+    from vllm.model_executor.layers.ops.rand import seeded_uniform
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/vllm/model_executor/layers/ops/rand.py", line 95, in <module>
+    def _seeded_uniform_triton(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/triton/runtime/jit.py", line 419, in jit
+    return decorator(fn)
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/triton/runtime/jit.py", line 412, in decorator
+    return JITFunction(
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/triton/runtime/jit.py", line 321, in __init__
+    self.run = self._make_launcher()
+  File "/data/home/scv6a42/.conda/envs/LLM_server/lib/python3.10/site-packages/triton/runtime/jit.py", line 291, in _make_launcher
+    exec(src, scope)
+  File "<string>", line 3
+    sig_key =  ,
+               ^
+SyntaxError: invalid syntax
+INFO 06-18 14:47:31 api_server.py:177] vLLM API server version 0.5.0
+INFO 06-18 14:47:31 api_server.py:178] args: Namespace(host=None, port=8000, uvicorn_log_level='info', allow_credentials=False, allowed_origins=['*'], allowed_methods=['*'], allowed_headers=['*'], api_key=None, lora_modules=None, chat_template=None, response_role='assistant', ssl_keyfile=None, ssl_certfile=None, ssl_ca_certs=None, ssl_cert_reqs=0, root_path=None, middleware=[], model='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', tokenizer=None, skip_tokenizer_init=False, revision=None, code_revision=None, tokenizer_revision=None, tokenizer_mode='auto', trust_remote_code=False, download_dir=None, load_format='auto', dtype='half', kv_cache_dtype='auto', quantization_param_path=None, max_model_len=None, guided_decoding_backend='outlines', distributed_executor_backend=None, worker_use_ray=False, pipeline_parallel_size=1, tensor_parallel_size=1, max_parallel_loading_workers=None, ray_workers_use_nsight=False, block_size=16, enable_prefix_caching=False, disable_sliding_window=False, use_v2_block_manager=False, num_lookahead_slots=0, seed=0, swap_space=4, gpu_memory_utilization=0.9, num_gpu_blocks_override=None, max_num_batched_tokens=None, max_num_seqs=256, max_logprobs=20, disable_log_stats=False, quantization=None, rope_scaling=None, rope_theta=None, enforce_eager=False, max_context_len_to_capture=None, max_seq_len_to_capture=8192, disable_custom_all_reduce=False, tokenizer_pool_size=0, tokenizer_pool_type='ray', tokenizer_pool_extra_config=None, enable_lora=False, max_loras=1, max_lora_rank=16, lora_extra_vocab_size=256, lora_dtype='auto', long_lora_scaling_factors=None, max_cpu_loras=None, fully_sharded_loras=False, device='auto', image_input_type=None, image_token_id=None, image_input_shape=None, image_feature_size=None, image_processor=None, image_processor_revision=None, disable_image_processor=False, scheduler_delay_factor=0.0, enable_chunked_prefill=False, speculative_model=None, num_speculative_tokens=None, speculative_max_model_len=None, speculative_disable_by_batch_size=None, ngram_prompt_lookup_max=None, ngram_prompt_lookup_min=None, model_loader_extra_config=None, preemption_mode=None, served_model_name=['Qwen2-7B-Instruct'], qlora_adapter_name_or_path=None, engine_use_ray=False, disable_log_requests=False, max_log_len=None)
+WARNING 06-18 14:47:31 config.py:1218] Casting torch.bfloat16 to torch.float16.
+INFO 06-18 14:47:31 llm_engine.py:161] Initializing an LLM engine (v0.5.0) with config: model='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', speculative_config=None, tokenizer='/data/home/scv6a42/archive/model/Qwen2-7B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=32768, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), seed=0, served_model_name=Qwen2-7B-Instruct)
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+INFO 06-18 14:47:31 selector.py:119] Cannot use FlashAttention-2 backend for Volta and Turing GPUs.
+INFO 06-18 14:47:31 selector.py:50] Using XFormers backend.
+INFO 06-18 14:47:35 selector.py:119] Cannot use FlashAttention-2 backend for Volta and Turing GPUs.
+INFO 06-18 14:47:35 selector.py:50] Using XFormers backend.
+INFO 06-18 14:49:26 model_runner.py:159] Loading model weights took 14.2487 GB
+INFO 06-18 14:49:32 gpu_executor.py:83] # GPU blocks: 8933, # CPU blocks: 4681
+INFO 06-18 14:49:36 model_runner.py:878] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 06-18 14:49:36 model_runner.py:882] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 06-18 14:49:52 model_runner.py:954] Graph capturing finished in 16 secs.
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+INFO 06-18 14:49:52 serving_chat.py:92] Using default chat template:
+INFO 06-18 14:49:52 serving_chat.py:92] {% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system
+INFO 06-18 14:49:52 serving_chat.py:92] You are a helpful assistant.<|im_end|>
+INFO 06-18 14:49:52 serving_chat.py:92] ' }}{% endif %}{{'<|im_start|>' + message['role'] + '
+INFO 06-18 14:49:52 serving_chat.py:92] ' + message['content'] + '<|im_end|>' + '
+INFO 06-18 14:49:52 serving_chat.py:92] '}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant
+INFO 06-18 14:49:52 serving_chat.py:92] ' }}{% endif %}
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+WARNING 06-18 14:49:52 serving_embedding.py:141] embedding_mode is False. Embedding API will not work.
+INFO:     Started server process [47031]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO 06-18 14:50:03 async_llm_engine.py:561] Received request cmpl-90457150e94a45d7957f9574a5de625c: prompt: '<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\nYour Long Input Here.<|im_end|>\n<|im_start|>assistant\n', params: SamplingParams(n=1, best_of=1, presence_penalty=0.0, frequency_penalty=0.0, repetition_penalty=1.0, temperature=0.7, top_p=1.0, top_k=-1, min_p=0.0, seed=None, use_beam_search=False, length_penalty=1.0, early_stopping=False, stop=[], stop_token_ids=[], include_stop_str_in_output=False, ignore_eos=False, max_tokens=32744, min_tokens=0, logprobs=None, prompt_logprobs=None, skip_special_tokens=True, spaces_between_special_tokens=True, truncate_prompt_tokens=None), prompt_token_ids: [151644, 8948, 198, 2610, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 7771, 5724, 5571, 5692, 13, 151645, 198, 151644, 77091, 198], lora_request: None.
+INFO 06-18 14:50:03 metrics.py:341] Avg prompt throughput: 2.2 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:50:04 async_llm_engine.py:133] Finished request cmpl-90457150e94a45d7957f9574a5de625c.
+INFO:     ::1:42686 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO 06-18 14:50:13 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 5.5 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:50:23 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:50:33 async_llm_engine.py:561] Received request cmpl-96b959ec65cd4a64b3f587d7e2805241: prompt: '<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\nYour Long Input Here.<|im_end|>\n<|im_start|>assistant\n', params: SamplingParams(n=1, best_of=1, presence_penalty=0.0, frequency_penalty=0.0, repetition_penalty=1.0, temperature=0.7, top_p=1.0, top_k=-1, min_p=0.0, seed=None, use_beam_search=False, length_penalty=1.0, early_stopping=False, stop=[], stop_token_ids=[], include_stop_str_in_output=False, ignore_eos=False, max_tokens=32744, min_tokens=0, logprobs=None, prompt_logprobs=None, skip_special_tokens=True, spaces_between_special_tokens=True, truncate_prompt_tokens=None), prompt_token_ids: [151644, 8948, 198, 2610, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 7771, 5724, 5571, 5692, 13, 151645, 198, 151644, 77091, 198], lora_request: None.
+INFO 06-18 14:50:33 metrics.py:341] Avg prompt throughput: 2.4 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:50:35 async_llm_engine.py:133] Finished request cmpl-96b959ec65cd4a64b3f587d7e2805241.
+INFO:     ::1:42740 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO 06-18 14:50:43 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 9.9 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:50:53 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:51:03 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:51:13 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:51:23 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:51:33 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:51:43 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:51:53 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:52:03 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:52:13 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:52:23 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:52:33 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:52:43 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:52:53 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:53:03 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:53:13 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:53:23 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:53:33 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:53:43 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:53:53 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:54:03 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:54:13 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:54:23 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:54:33 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:54:43 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:54:53 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:55:03 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:55:13 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 06-18 14:55:23 metrics.py:341] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47031]
+./launch/Qwen2-7B-Instruct.sh: 行 6: 47031 已终止               python -m vllm.entrypoints.openai.api_server --served-model-name Qwen2-7B-Instruct --dtype=half --model /data/home/scv6a42/archive/model/Qwen2-7B-Instruct
