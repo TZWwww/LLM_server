@@ -1,6 +1,7 @@
-export HF_ENDPOINT=https://hf-mirror.com
+# export HF_ENDPOINT=https://hf-mirror.com
 
-prefix=/data0/lyw/tzw/models/
+prefix=/data0/models/
+
 
 # huggingface-cli download \
 #     --resume-download \
@@ -15,12 +16,17 @@ prefix=/data0/lyw/tzw/models/
 #     --token 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 \
 #     --local-dir /data/home/scv6a42/archive/models/Qwen2-7B-Instruct-GPTQ-Int4
 
- # huggingface-cli download \
- #     --resume-download \
- #     Qwen/Qwen2-7B-Instruct \
- #     --token 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 \
- #     --local-dir ${prefix}Qwen2-7B-Instruct
+ huggingface-cli download \
+     --resume-download \
+     Qwen/Qwen2.5-72B-Instruct-GPTQ-Int4 \
+     --token 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 \
+     --local-dir ${prefix}Qwen2.5-72B-Instruct-GPTQ-Int4 \
 
+ huggingface-cli download \
+     --resume-download \
+     Qwen/Qwen2.5-7B-Instruct-GPTQ-Int4 \
+     --token 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 \
+     --local-dir ${prefix}Qwen2.5-7B-Instruct-GPTQ-Int4 \
 
 
 # huggingface-cli download \
@@ -54,8 +60,8 @@ prefix=/data0/lyw/tzw/models/
 #     --token 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 \
 #     --local-dir ${prefix}Qwen2-72B-Instruct-GPTQ-Int4
 
-huggingface-cli download \
-    --resume-download \
-    lmsys/vicuna-7b-v1.3 \
-    --token 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 \
-    --local-dir ${prefix}vicuna-7b-v1.3
+# huggingface-cli download \
+#     --resume-download \
+#     lmsys/vicuna-7b-v1.3 \
+#     --token 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 \
+#     --local-dir ${prefix}vicuna-7b-v1.3
